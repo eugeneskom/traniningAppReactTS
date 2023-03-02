@@ -18,11 +18,15 @@ export const saveTraining = (newRepetitions:Repetition):void => {
   }
 }
 
-export const getTrainings = () => {
+export const getTrainings = (): Repetition[] | null  => {
   const savedRepetitions = window.localStorage.getItem('repetitions');
   if(savedRepetitions){
     return JSON.parse(savedRepetitions)
   }else {
     return null;
   }
+}
+
+export const getDate = ()=>{
+  return
 }

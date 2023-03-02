@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import { getTrainings } from "../libs/helpers";
 import { AppContext } from "../App";
 
-function ShowCase() {
+function History() {
   const { trainings, setTrainings } = useContext(AppContext);
 
   function createData(name: string, calories: number, fat: number, carbs: number, protein: number) {
@@ -26,8 +26,8 @@ function ShowCase() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {trainings.map((training) => (
-            <TableRow key={training.exercise} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+          {trainings?.map((training) => (
+            <TableRow key={Math.random()} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
               <TableCell component="th" scope="row">
                 {training.exercise}
               </TableCell>
@@ -40,4 +40,4 @@ function ShowCase() {
   );
 }
 
-export default ShowCase;
+export default History;
