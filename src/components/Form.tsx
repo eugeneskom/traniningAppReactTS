@@ -1,26 +1,28 @@
 import React, { SyntheticEvent } from "react";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import Input from "./Input";
 import SelectExc from "./SelectExc";
 import {saveTraining, getTrainings } from "../libs/helpers";
+import { AppContext } from "../App";
 
 
 function Form() {
+  const {inputNumber, setInputNumber,isInputError, setIsInputError} = useContext(AppContext);
+
   const [selected, setSelected] = useState<string>("push ups");
-  const [inputValue, setInputValue] = useState<string>("");
-  const [isInputError, setIsInputError] = useState<boolean>(false);
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    if(inputValue === ''){
+    if(inputNumber === 0){
       setIsInputError(true);
+      return
     }
-    saveTraining({exercise:selected, times: +inputValue})
-    console.log("selected excses: ", selected, "repetitions: ", inputValue);
+    saveTraining({exercise:selected, times: +inputNumber})
+    console.log("selected excses: ", selected, "repetitions: ", inputNumber);
     setSelected(selected);
 
 
-    setInputValue("");
+    setInputNumber(0);
   }
 
   function handleSelect(e: React.ChangeEvent<HTMLSelectElement>): void {
@@ -28,17 +30,10 @@ function Form() {
     console.log(e.target.value);
   }
 
-  function handleInput(e: React.ChangeEvent<HTMLInputElement>): void {
-    setInputValue(e.target.value);
-    console.log(e.target.value);
-    if(e.currentTarget.value !== ''){
-      setIsInputError(false)
-    }
-  }
 
   return (
     <form onSubmit={handleSubmit}>
-      <Input isInputError={isInputError} handleInput={handleInput} inputValue={inputValue} />
+      <Input />
       <SelectExc handleSelect={handleSelect} selected={selected} />
       <button disabled={isInputError} type="submit">Submit</button>
     </form>
