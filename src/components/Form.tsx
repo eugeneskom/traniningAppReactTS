@@ -4,7 +4,8 @@ import Input from "./Input";
 import SelectExc from "./SelectExc";
 import {saveTraining, getTrainings } from "../libs/helpers";
 import { AppContext } from "../App";
-
+import Button from '@mui/material/Button';
+import { SelectChangeEvent } from "@mui/material";
 
 function Form() {
   const {inputNumber, setInputNumber,isInputError, setIsInputError} = useContext(AppContext);
@@ -18,14 +19,13 @@ function Form() {
       return
     }
     saveTraining({exercise:selected, times: +inputNumber})
-    console.log("selected excses: ", selected, "repetitions: ", inputNumber);
     setSelected(selected);
 
 
     setInputNumber(0);
   }
 
-  function handleSelect(e: React.ChangeEvent<HTMLSelectElement>): void {
+  function handleSelect(e: SelectChangeEvent): void {
     setSelected(e.target.value);
     console.log(e.target.value);
   }
@@ -35,7 +35,7 @@ function Form() {
     <form onSubmit={handleSubmit}>
       <Input />
       <SelectExc handleSelect={handleSelect} selected={selected} />
-      <button disabled={isInputError} type="submit">Submit</button>
+      <Button variant="outlined" disabled={isInputError} type="submit">Submit</Button>
     </form>
   );
 }

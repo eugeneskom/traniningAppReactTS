@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { Select } from "@mui/material";
+import { SelectChangeEvent, MenuItem } from "@mui/material";
 
 interface Props {
-  handleSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleSelect: (e: SelectChangeEvent) => void;
   selected: string
 }
 
-function SelectExc({ handleSelect,selected }:Props) {
-  const [excercises, setExcercises] = useState<{ name: string }[]>([
+function SelectExc({ handleSelect, selected }:Props) {
+  const [exercises, setExercises] = useState<{ name: string }[]>([
+    { name: "choose exercise" }, 
     { name: "push ups" }, 
     { name: "squats" }, 
     { name: "shoulders push up" }
@@ -15,13 +18,11 @@ function SelectExc({ handleSelect,selected }:Props) {
   // setExcercises()
 
   return (
-    <select name="exsercise" id="" value={selected} onChange={handleSelect}>
-      {excercises.map((exc) => (
-        <option key={exc.name} value={exc.name}>
-          {exc.name}
-        </option>
+    <Select name="exercise" id="" value={selected} onChange={handleSelect}>
+      {exercises.map((exc) => (
+        <MenuItem key={exc.name} value={exc.name}>{exc.name}</MenuItem>
       ))}
-    </select>
+    </Select>
   );
 }
 

@@ -1,6 +1,6 @@
 export {}
 
-type Repetition = {
+export type Repetition = {
   exercise: string,
   times: number
 }
