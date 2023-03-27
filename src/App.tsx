@@ -4,8 +4,9 @@ import { getTrainings } from "./libs/helpers";
 import Form from "./components/Form";
 import History from "./components/History";
 import { Repetition } from "./libs/helpers";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, NavLink, NavLinkProps } from "react-router-dom";
 import styled from "styled-components";
+
 
 export type GlobalContent = {
   inputNumber: number | null;
@@ -25,7 +26,11 @@ export const AppContext = createContext<GlobalContent>({
   setTrainings: () => {},
 });
 
-const NavLink = styled(Link)`
+interface StyledNavLinkProps extends NavLinkProps {
+  activeClassName?: string;
+}
+
+const StyledNavLink = styled(NavLink)<StyledNavLinkProps>`
   background-color: #1976d2;
   text-align: center;
   color: white;
@@ -33,6 +38,10 @@ const NavLink = styled(Link)`
   border-radius: 5px;
   display: inline-block;
   text-decoration:none;
+  &.${props => props.activeClassName} {
+    font-weight: bold;
+    text-decoration: underline;
+  }
   :hover{
     background-color:#0c62b9;
   }
@@ -59,10 +68,10 @@ function App() {
       <nav>
         <NavList>
           <li>
-            <NavLink to="/">Save training</NavLink>
+            <StyledNavLink to="/" activeClassName="active" >Save training</StyledNavLink>
           </li>
           <li>
-            <NavLink to="/history">History</NavLink>
+            <StyledNavLink to="/history" activeClassName="active" >History</StyledNavLink>
           </li>
           {/* <li>
             <Link to="/users">Users</Link>
