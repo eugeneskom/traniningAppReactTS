@@ -2,7 +2,7 @@ export {}
 
 export type Repetition = {
   exercise: string,
-  times: number
+  times: number | null
 }
 
 export const saveTraining = (newRepetitions:Repetition):void => {
