@@ -5,6 +5,7 @@ import Form from "./components/Form";
 import History from "./components/History";
 import { Repetition } from "./libs/helpers";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 
 export type GlobalContent = {
   inputNumber: number | null;
@@ -23,6 +24,25 @@ export const AppContext = createContext<GlobalContent>({
   trainings: [] || null,
   setTrainings: () => {},
 });
+
+const NavLink = styled(Link)`
+  background-color: #1976d2;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  text-decoration:none;
+  :hover{
+    background-color:#0c62b9;
+  }
+`;
+const NavList = styled.ul`
+  list-style-type: none;
+  display: flex;
+  column-gap:10px;
+`
+
 function App() {
   const [inputNumber, setInputNumber] = useState<number | null>(null);
   const [isInputError, setIsInputError] = useState(false);
@@ -37,28 +57,24 @@ function App() {
   return (
     <BrowserRouter>
       <nav>
-        <ul>
+        <NavList>
           <li>
-            <Link to="/">Save training</Link>
+            <NavLink to="/">Save training</NavLink>
           </li>
           <li>
-            <Link to="/history">History</Link>
+            <NavLink to="/history">History</NavLink>
           </li>
           {/* <li>
             <Link to="/users">Users</Link>
           </li> */}
-        </ul>
+        </NavList>
       </nav>
       <AppContext.Provider value={{ trainings, setTrainings, inputNumber, setInputNumber, isInputError, setIsInputError }}>
-      <Routes>
-          <Route
-            path="/"
-            element={<Form />}
-          />
+        <Routes>
+          <Route path="/" element={<Form />} />
           <Route path="/history" element={<History />} />
           {/* <Route path="/" element={<Home />} /> */}
         </Routes>
-        
       </AppContext.Provider>
     </BrowserRouter>
   );
