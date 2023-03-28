@@ -4,14 +4,15 @@ import { getTrainings } from "./libs/helpers";
 import Form from "./components/Form";
 import History from "./components/History";
 import { Repetition } from "./libs/helpers";
-import { BrowserRouter, Routes, Route,  NavLink, NavLinkProps } from "react-router-dom";
+import { BrowserRouter, Routes, Route,  NavLink, NavLinkProps, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Trainings from "./components/Trainings";
-
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import AnimatedRoutes from "./components/AnimatedRoutes";
 
 export type GlobalContent = {
-  inputNumber: number | null;
-  setInputNumber: (c: number | null) => void;
+  inputNumber: number | "";
+  setInputNumber: (c: number | "") => void;
   isInputError: boolean;
   setIsInputError: (c: boolean) => void;
   trainings: Repetition[] | null;
@@ -19,7 +20,7 @@ export type GlobalContent = {
 };
 
 export const AppContext = createContext<GlobalContent>({
-  inputNumber: null,
+  inputNumber: "",
   setInputNumber: () => {},
   isInputError: false,
   setIsInputError: () => {},
@@ -28,7 +29,7 @@ export const AppContext = createContext<GlobalContent>({
 });
 
 interface StyledNavLinkProps extends NavLinkProps {
-  activeClassName?: string;
+  activeclassname?: string;
 }
 
 const StyledNavLink = styled(NavLink)<StyledNavLinkProps>`
@@ -39,7 +40,7 @@ const StyledNavLink = styled(NavLink)<StyledNavLinkProps>`
   border-radius: 5px;
   display: inline-block;
   text-decoration:none;
-  &.${props => props.activeClassName} {
+  &.${props => props.activeclassname} {
     font-weight: bold;
     text-decoration: underline;
   }
@@ -60,7 +61,7 @@ const Container = styled.div`
 `
 
 function App() {
-  const [inputNumber, setInputNumber] = useState<number | null>(null);
+  const [inputNumber, setInputNumber] = useState<number | "">("");
   const [isInputError, setIsInputError] = useState(false);
   const [trainings, setTrainings] = useState<Repetition[] | null>(null);
 
@@ -77,22 +78,23 @@ function App() {
       <nav>
         <NavList>
           <li>
-            <StyledNavLink to="/" activeClassName="active" >Save training</StyledNavLink>
+            <StyledNavLink to="/" activeclassname="active" >Save training</StyledNavLink>
           </li>
           <li>
-            <StyledNavLink to="/history" activeClassName="active" >History</StyledNavLink>
+            <StyledNavLink to="/history" activeclassname="active" >History</StyledNavLink>
           </li>
           <li>
-            <StyledNavLink to="/trainings" activeClassName="active" >Trainings</StyledNavLink>
+            <StyledNavLink to="/trainings" activeclassname="active" >Trainings</StyledNavLink>
           </li>
         </NavList>
       </nav>
       <AppContext.Provider value={{ trainings, setTrainings, inputNumber, setInputNumber, isInputError, setIsInputError }}>
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={<Form />} />
           <Route path="/history" element={<History />} />
           <Route path="/trainings" element={<Trainings />} />
-        </Routes>
+        </Routes> */}
+        <AnimatedRoutes/>
       </AppContext.Provider>
     </Container>
     </BrowserRouter>

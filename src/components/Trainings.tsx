@@ -14,14 +14,14 @@ const trainingList: Training[] = [
   { type: "push ups", sets: 3, reps: 12, id: 2 },
   { type: "jumping jacks", sets: 3, reps: 15, id: 3 },
   { type: "lunges", sets: 3, reps: 12, id: 4 },
-  { type: "squats", sets: 3, reps: 15, id: 4 },
+  { type: "squats", sets: 3, reps: 15, id: 5 },
 ];
 
 export default function Trainings() {
   return (
     <>
       {trainingList.map((exc) => (
-        <Exercise type={exc.type} sets={exc.sets} reps={30} id={1} />
+        <Exercise key={exc.id} type={exc.type} sets={exc.sets} reps={exc.reps} id={exc.id} />
       ))}
     </>
   );

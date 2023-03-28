@@ -15,7 +15,7 @@ function Form() {
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    if (inputNumber === null) {
+    if (inputNumber === "") {
       setIsInputError(true);
       return;
     }
@@ -26,7 +26,7 @@ function Form() {
       return prevTrainings ? [...prevTrainings, training] : [training];
     });
     setSelected(selected);
-    setInputNumber(null);
+    setInputNumber("");
   }
 
   function handleSelect(e: SelectChangeEvent): void {
@@ -36,7 +36,7 @@ function Form() {
 
   return (
     <form onSubmit={handleSubmit} className="form">
-      <Input />
+      <Input  />
       <SelectExc handleSelect={handleSelect} selected={selected} />
       <Button size="large" variant="outlined" disabled={isInputError} type="submit">
         Submit
