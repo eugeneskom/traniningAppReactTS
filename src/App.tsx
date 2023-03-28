@@ -4,8 +4,9 @@ import { getTrainings } from "./libs/helpers";
 import Form from "./components/Form";
 import History from "./components/History";
 import { Repetition } from "./libs/helpers";
-import { BrowserRouter, Routes, Route, Link, NavLink, NavLinkProps } from "react-router-dom";
+import { BrowserRouter, Routes, Route,  NavLink, NavLinkProps } from "react-router-dom";
 import styled from "styled-components";
+import Trainings from "./components/Trainings";
 
 
 export type GlobalContent = {
@@ -51,6 +52,12 @@ const NavList = styled.ul`
   display: flex;
   column-gap:10px;
 `
+const Container = styled.div`
+  max-width:1200px;
+  width:100%;
+  margin: 0 auto;
+  padding: 0 15px;
+`
 
 function App() {
   const [inputNumber, setInputNumber] = useState<number | null>(null);
@@ -65,6 +72,8 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Container>
+
       <nav>
         <NavList>
           <li>
@@ -73,18 +82,19 @@ function App() {
           <li>
             <StyledNavLink to="/history" activeClassName="active" >History</StyledNavLink>
           </li>
-          {/* <li>
-            <Link to="/users">Users</Link>
-          </li> */}
+          <li>
+            <StyledNavLink to="/trainings" activeClassName="active" >Trainings</StyledNavLink>
+          </li>
         </NavList>
       </nav>
       <AppContext.Provider value={{ trainings, setTrainings, inputNumber, setInputNumber, isInputError, setIsInputError }}>
         <Routes>
           <Route path="/" element={<Form />} />
           <Route path="/history" element={<History />} />
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/trainings" element={<Trainings />} />
         </Routes>
       </AppContext.Provider>
+    </Container>
     </BrowserRouter>
   );
 }
