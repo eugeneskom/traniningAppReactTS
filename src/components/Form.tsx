@@ -6,7 +6,7 @@ import { saveTraining, getTrainings } from "../libs/helpers";
 import { AppContext } from "../App";
 import Button from "@mui/material/Button";
 import { SelectChangeEvent } from "@mui/material";
-import { Repetition } from "../libs/helpers";
+import { Repetition } from "../types/types";
 
 function Form() {
   const { trainings, setTrainings, inputNumber, setInputNumber, isInputError, setIsInputError } = useContext(AppContext);

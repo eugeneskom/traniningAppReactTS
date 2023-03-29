@@ -31,7 +31,6 @@ function History() {
       return [];
     }
   }
-  // getListOfExcersises();
 
   useEffect(() => {
     const selectExc = getListOfExcersises();

@@ -1,13 +1,9 @@
 import "./App.css";
 import { useState, createContext, useEffect } from "react";
 import { getTrainings } from "./libs/helpers";
-import Form from "./components/Form";
-import History from "./components/History";
-import { Repetition } from "./libs/helpers";
-import { BrowserRouter, Routes, Route,  NavLink, NavLinkProps, useLocation } from "react-router-dom";
+import { Repetition } from "./types/types";
+import { BrowserRouter, NavLink, NavLinkProps } from "react-router-dom";
 import styled from "styled-components";
-import Trainings from "./components/Trainings";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import AnimatedRoutes from "./components/AnimatedRoutes";
 
 export type GlobalContent = {

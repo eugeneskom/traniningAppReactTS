@@ -1,9 +1,4 @@
-export {}
-
-export type Repetition = {
-  exercise: string,
-  times: number | null
-}
+import { Repetition } from "../types/types"
 
 export const saveTraining = (newRepetitions:Repetition):void => {
   console.log('newRepetitions: ',newRepetitions)

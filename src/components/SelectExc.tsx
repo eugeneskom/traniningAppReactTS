@@ -15,7 +15,6 @@ function SelectExc({ handleSelect, selected }:Props) {
     { name: "shoulders push up" }
   ]);
 
-  // setExcercises()
 
   return (
     <Select name="exercise" id="" value={selected} onChange={handleSelect}>

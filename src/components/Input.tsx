@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, {  useContext } from "react";
 import { AppContext } from "../App";
 import { TextField } from "@mui/material";
 
-function Input({}: any) {
+function Input() {
   const { inputNumber, setInputNumber, isInputError, setIsInputError } = useContext(AppContext);
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>): void {
