@@ -4,13 +4,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
-import { useState } from "react";
 import { ExerciseProps } from "./types";
-import { Training } from "../../types/types";
 
 
 function Exercise({ exercise, onCompleteExercise}: ExerciseProps) {
-  // const [checked, setChecked] = useState([0]);
   const {type,sets,reps,id,checked} = exercise;
 
 
