@@ -4,7 +4,7 @@ export type Training = {
   type: ExercisesList;
   sets: number;
   reps: number;
-  id: number;
+  readonly id: number;
   checked: boolean;
 };
 
