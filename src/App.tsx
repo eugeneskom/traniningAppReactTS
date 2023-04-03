@@ -2,9 +2,12 @@ import "./App.css";
 import { useState, createContext, useEffect } from "react";
 import { getTrainings } from "./libs/helpers";
 import { Repetition } from "./types/types";
-import { BrowserRouter, NavLink, NavLinkProps } from "react-router-dom";
+import { BrowserRouter, NavLink, NavLinkProps, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import AnimatedRoutes from "./components/AnimatedRoutes";
+import Form from "./components/Form";
+import History from "./components/History";
+import Trainings from "./components/Trainings";
 
 export type GlobalContent = {
   inputNumber: number | "";
@@ -85,12 +88,12 @@ function App() {
         </NavList>
       </nav>
       <AppContext.Provider value={{ trainings, setTrainings, inputNumber, setInputNumber, isInputError, setIsInputError }}>
-        {/* <Routes>
+        <Routes>
           <Route path="/" element={<Form />} />
           <Route path="/history" element={<History />} />
           <Route path="/trainings" element={<Trainings />} />
-        </Routes> */}
-        <AnimatedRoutes/>
+        </Routes>
+        {/* <AnimatedRoutes/> */}
       </AppContext.Provider>
     </Container>
     </BrowserRouter>

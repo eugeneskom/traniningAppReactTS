@@ -35,13 +35,14 @@ function History() {
   useEffect(() => {
     const selectExc = getListOfExcersises();
     setTrainingsInHistory(selectExc);
-  }, []);
-
-  useEffect(() => {
     if (trainingsInHistory.length > 0) {
       setFilterOption(trainingsInHistory[0]);
     }
-  }, [trainingsInHistory]);
+  }, []);
+
+ 
+
+  
 
   const handleFilter = (e: SelectChangeEvent): void => {
     setFilterOption(e.target.value);
